@@ -21,7 +21,6 @@ import {
     useDisclosure
 } from '@chakra-ui/react'
 import {Link} from 'react-router-dom'
-
 function ProductsPage() {
     return (
         <>

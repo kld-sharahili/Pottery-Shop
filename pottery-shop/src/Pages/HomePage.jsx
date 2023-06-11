@@ -2,13 +2,8 @@ import Nav from "../component/Nav"
 import ProductsPage from "./ProductsPage"
 import HomeBody from "../component/HomeBody"
 import { 
-    Box,
     Flex,
-    Image,
-    Spacer,
     Button,
-    HStack,
-    Text,
     Modal,
     ModalOverlay,
     ModalContent,
@@ -30,10 +25,16 @@ function HomePage() {
     const { isOpen: isCreateOpen, onOpen: onCreateOpen, onClose: onCloseOpen } = useDisclosure()
     const { isOpen: isLoginOpen, onOpen: onLogOpen, onClose: onLoginOpen } = useDisclosure()
 
-    const [password, setPassword] = useState()
+    const [password, setPassword] = useState('')
 
-    const pwd = (event) => {
-        console.log(event.target.value);
+    const pwdInput = (event) => {
+        setPassword(event.target.value)      
+    }
+
+    const toLogin = () => {
+        if(password.length <= 4){
+            alert('The password should more than 4 letters')
+        }
     }
     return (
         <>
@@ -65,7 +66,7 @@ function HomePage() {
                                                     <FormLabel>Email</FormLabel>
                                                     <Input type='email' border={"2px"} borderColor={"#D3C9A4"}></Input>
                                                     <FormLabel>Password</FormLabel>
-                                                    <Input type='password' value={password} onChange={pwd} border={"2px"} borderColor={"#D3C9A4"}></Input>
+                                                    <Input type='password' border={"2px"} borderColor={"#D3C9A4"}></Input>
                                                 </FormControl>
                                             </form>  
                                 </ModalBody>
@@ -92,13 +93,13 @@ function HomePage() {
                                                     <FormLabel>Username</FormLabel>
                                                     <Input type='text' border={"2px"} borderColor={"#D3C9A4"}></Input>
                                                     <FormLabel>Password</FormLabel>
-                                                    <Input type='password' border={"2px"} borderColor={"#D3C9A4"}></Input>
+                                                    <Input type='text' value={password} onChange={pwdInput} border={"2px"} borderColor={"#D3C9A4"}></Input>
                                                 </FormControl>
                                 </ModalBody>
                                 <Flex justifyContent={"start"}>
                                 <ModalFooter>  
                                     <Link to='/products'>
-                                        <Button type='submit' bg={"#D3C9A4"} _hover={{bg: "#265d51", color: "white"}} transitionDuration={"1s"}>Login</Button>
+                                        <Button type='submit' onClick={toLogin} bg={"#D3C9A4"} _hover={{bg: "#265d51", color: "white"}} transitionDuration={"1s"}>Login</Button>
                                     </Link>      
                                 </ModalFooter>
                                 </Flex>
